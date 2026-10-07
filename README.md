@@ -13,12 +13,13 @@ Put these files in the `images/` folder. Use exactly these names:
 
 | File | What |
 | --- | --- |
-| `images/groom.jpg` | Groom, single portrait (vertical) |
-| `images/bride.jpg` | Bride, single portrait (vertical) |
+| `images/groom-cutout.webp` | Groom portrait with the background removed (already added) |
+| `images/bride-cutout.webp` | Bride portrait with the background removed (already added) |
 | `images/couple-1.jpg` … `images/couple-5.jpg` | Photos of you together (4–5) |
 
 Tips:
-- Vertical (portrait) photos look best. Faces should sit in the upper half, because the portraits use an arch-shaped frame.
+- The portraits sit in a gold arch on maroon velvet, with a halo behind the head. A cut-out (transparent PNG or WebP) looks best. An ordinary vertical photo also works: it fills the arch, so keep the face in the upper half. To use a different file, change `photos.groom` / `photos.bride` in `CONFIG`.
+- If a face sits too high or too low in its arch, adjust `--hy` (halo height), `--ps` (zoom) and `--py` (shift down) on that portrait in `index.html`.
 - Resize each photo to about **1200 px** on the long side, under **400 KB**. You can use https://squoosh.app. This keeps the card fast on mobile data.
 - If a photo is missing, the card still looks finished. A missing portrait shows a gold monogram, and the photo section stays hidden until at least one couple photo exists.
 - Using `.jpeg`, `.png` or `.webp`, or only 4 couple photos? Edit the `photos` list in `CONFIG` near the bottom of `index.html`.
