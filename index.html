@@ -3193,7 +3193,147 @@
         animation: none
       }
     }
-  </style>
+  
+    /* cover: the couple in an arched window */
+    .hero{position:relative;height:clamp(180px,calc(100vh - 604px),320px);height:clamp(180px,calc(100svh - 604px),320px);aspect-ratio:5/6;margin:22px auto 4px}
+    .hero-in{position:absolute;inset:0;overflow:hidden;border-radius:50% 50% 6px 6px/42% 42% 6px 6px;background:#F3EEE4;
+      box-shadow:0 0 0 1px rgba(184,138,62,.85),0 0 0 5px #FFF9EE,0 0 0 6.5px rgba(184,138,62,.6),0 26px 36px -20px rgba(74,17,25,.6)}
+    .hero-in img{width:100%;height:100%;object-fit:cover;object-position:50% 0;transform:scale(1.08);transform-origin:50% 30%;transition:transform 3.2s var(--ease)}
+    body.opened .hero-in img{transform:none}
+    .hero-in::after{content:'';position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,248,230,.6),inset 0 0 28px rgba(120,80,40,.18)}
+    .hero .bfly{position:absolute;left:50%;top:-24px;width:58px;height:44px;translate:-50% 0;z-index:2}
+    .portal-in .names{display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:0 12px;margin-top:16px}
+    .portal-in .names .nm{display:inline;font-size:clamp(2rem,10vw,2.5rem)}
+    .portal-in .names .and{display:inline;margin:0;font-size:1.15rem}
+    .portal-in .names .and::before,.portal-in .names .and::after{display:none}
+    .portal-in .names-en{margin-top:2px}
+    /* cover fit: tighter rhythm so the whole cover sits in one screen */
+    #cover .body{padding:34px 26px 66px}
+    #cover .portal-in{padding-bottom:22px}
+    #cover .title{font-size:clamp(2.9rem,15vw,3.9rem)}
+    #cover .datebar{margin-top:12px}
+    #cover .datebar>span{min-height:50px}
+    #cover .datebar b{font-size:2.9rem}
+    #cover .bdate{margin-top:8px}
+    #cover .cue{bottom:20px;gap:4px}
+    #cover .cue i{height:18px}
+    .portal-in .names{margin-top:10px}
+    html[lang="en"] #cover .title{font-size:clamp(2.2rem,10.4vw,2.9rem);line-height:1.3}
+    html[lang="en"] .portal-in .names .and span{font-size:1.9rem!important;color:var(--gold-d)}
+
+    /* =================================================================
+       LETTER — unrolls like a scroll, then reveals line by line
+       ================================================================= */
+    .letter > div[data-l]{position:relative;z-index:2}
+    .letter .dust{z-index:1}
+    .letter .dust i{background:#D3A24E;box-shadow:0 0 6px 1px rgba(211,162,78,.55)}
+    .letter-mandala{position:absolute;left:50%;top:30%;width:92%;aspect-ratio:1;translate:-50% -50%;color:var(--gold);opacity:.07;pointer-events:none;z-index:0}
+    .letter-mandala.b{top:74%}
+    html.js .letter.rv{clip-path:inset(-60px -16px 100% -16px);
+      transition:opacity 1.1s var(--ease),transform 1.2s var(--ease),clip-path 1.9s var(--ease-io)}
+    html.js .letter.rv.in{clip-path:inset(-60px -16px -80px -16px)}
+    .letter-rod{position:absolute;left:-12px;right:-12px;top:0;height:4px;z-index:5;border-radius:4px;pointer-events:none;
+      background:linear-gradient(90deg,#8A6224,#E9CF8F 30%,#FFF4D2 50%,#E9CF8F 70%,#8A6224);
+      box-shadow:0 0 14px 3px rgba(233,200,130,.55);opacity:0}
+    html.js .letter.rv.in .letter-rod{animation:rod 1.9s var(--ease-io) .24s both}
+    @keyframes rod{0%{top:0;opacity:1}85%{opacity:1}100%{top:100%;opacity:0}}
+    html.js .letter .lc{opacity:0;scale:.4;transition:opacity .9s ease 1.3s,scale 1.2s var(--ease) 1.3s}
+    html.js .letter.in .lc{opacity:.8;scale:1}
+    html.js .letter .crest{opacity:0;scale:.2;transition:opacity .6s ease .3s,scale 1s cubic-bezier(.34,1.56,.64,1) .3s}
+    html.js .letter.in .crest{opacity:1;scale:1}
+    .crest::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(184,138,62,.6);animation:ring 2.8s ease-out infinite;pointer-events:none}
+
+    /* lines appear one by one as the reader scrolls */
+    html.js .lr{opacity:0;transform:translateY(14px);filter:blur(6px);transition:opacity .9s ease,transform 1s var(--ease),filter 1s ease}
+    html.js .lr.in{opacity:1;transform:none;filter:none}
+    .verse{max-width:310px;margin:0 auto 6px}
+    .verse .lr{display:block;font-family:var(--bn);font-size:1.06rem;line-height:1.85;color:var(--ink)}
+    html[lang="en"] .verse .lr{font-family:var(--serif);font-size:1.16rem;line-height:1.6}
+    .letter .salute{margin-bottom:1em}
+
+    .verse .when{position:relative;display:flex;flex-direction:column;align-items:center;margin:12px auto 14px;padding:9px 0 10px;max-width:260px;line-height:1.35}
+    .when::before,.when::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform 1.3s var(--ease) .35s}
+    .when::before{top:0}.when::after{bottom:0}
+    .when.in::before,.when.in::after{transform:scaleX(1)}
+    .letter .when b{font-family:var(--bn);font-size:1.3rem;color:var(--maroon);font-weight:400}
+    html[lang="en"] .letter .when b{font-family:var(--serif);font-weight:600;font-size:1.28rem}
+    .letter .when{font-variant-numeric:lining-nums}
+    .when small{display:block;margin-top:2px;font-size:.86rem;color:var(--gold-d)}
+    html[lang="en"] .when small{font-family:var(--serif);font-style:italic;font-size:1rem}
+
+    .verse .who{margin:4px 0 2px}
+    .letter .who em{position:relative;display:inline-block;padding:0;font-family:var(--deco);font-size:1.6rem;line-height:1.3;color:var(--maroon)}
+    html[lang="en"] .letter .who em{font-family:var(--script);font-weight:400;font-size:2.1rem}
+    .who em::after{content:'';position:absolute;left:0;right:0;bottom:.08em;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform 1.2s var(--ease) .5s}
+    .who.in em::after{transform:scaleX(1)}
+
+    .mini{display:flex;align-items:center;justify-content:center;gap:8px;margin:18px auto 16px}
+    .mini::before,.mini::after{content:'';width:46px;height:8px;background:var(--kick) center/contain no-repeat}
+    .mini::after{transform:scaleX(-1)}
+    .mini i{width:7px;height:7px;background:var(--gold);rotate:45deg}
+
+    /* the mantra is written in gold, left to right, and glows softly */
+    .mantra{margin:14px 0 18px}
+    .m-glow{position:absolute;left:50%;top:50%;width:110%;height:160%;translate:-50% -50%;pointer-events:none;border-radius:50%;
+      background:radial-gradient(closest-side,rgba(240,200,120,.32),rgba(240,200,120,0));animation:breathe 4.5s ease-in-out infinite}
+    @keyframes breathe{0%,100%{opacity:.45;scale:.9}50%{opacity:1;scale:1.05}}
+    .mantra q{position:relative}
+    html.js .mantra q{-webkit-mask-image:linear-gradient(90deg,#000 40%,transparent 60%);mask-image:linear-gradient(90deg,#000 40%,transparent 60%);
+      -webkit-mask-size:250% 100%;mask-size:250% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+      -webkit-mask-position:100% 0;mask-position:100% 0;transition:-webkit-mask-position 2.6s ease .4s,mask-position 2.6s ease .4s}
+    html.js .mantra.in q{-webkit-mask-position:0 0;mask-position:0 0}
+    .mantra small{position:relative}
+
+    /* signatures appear as if being written */
+    html.js .sign strong{clip-path:inset(0 100% 0 0);transition:clip-path 1.6s var(--ease-io) .5s}
+    html.js .sign strong+strong{transition-delay:1.3s}
+    html.js .sign.in strong{clip-path:inset(0 0 0 0)}
+
+    @media(prefers-reduced-motion:reduce){
+      html.js .lr,html.js .letter .lc,html.js .letter .crest{opacity:1;transform:none;filter:none;scale:1}
+      html.js .letter.rv,html.js .sign strong{clip-path:none}
+      html.js .mantra q{-webkit-mask-image:none;mask-image:none}
+      .letter-rod{display:none}
+    }
+
+    /* =================================================================
+       STARTING PAGE DÉCOR — তোরণ, লণ্ঠন, গোলাপ, খিলান
+       ================================================================= */
+    .intro-deco{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+    .intro-deco .stage{position:absolute;top:0;bottom:0;left:50%;width:min(100%,620px);translate:-50% 0}
+    .toran{position:absolute;left:0;right:0;top:0;height:clamp(44px,7vh,62px);filter:drop-shadow(0 6px 6px rgba(0,0,0,.45))}
+    .toran svg{width:100%;height:100%;display:block}
+    .lamp{position:absolute;top:0;width:clamp(42px,12vw,58px);transform-origin:50% 0;animation:swing 5s ease-in-out infinite}
+    .lamp::before{content:'';position:absolute;left:50%;top:0;width:2px;height:var(--chain);translate:-50% 0;
+      background:repeating-linear-gradient(180deg,#E9CF8F 0 5px,#8A6224 5px 7px)}
+    .lamp svg{display:block;width:100%;margin-top:var(--chain);overflow:visible;filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))}
+    .lamp::after{content:'';position:absolute;left:50%;top:calc(var(--chain) + 45%);width:300%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;
+      background:radial-gradient(closest-side,rgba(255,196,110,.42),rgba(255,170,80,.12) 50%,transparent);animation:glow 3.2s ease-in-out infinite;z-index:-1}
+    .lamp .lamp-light{animation:flick 2.4s ease-in-out infinite}
+    .lamp.l1{left:3%;--chain:clamp(56px,10vh,92px)}
+    .lamp.l2{left:19%;--chain:clamp(20px,4vh,36px);width:clamp(30px,8.5vw,42px);animation-delay:-1.7s;animation-duration:6s}
+    .lamp.r1{right:3%;--chain:clamp(70px,12vh,110px);animation-delay:-2.6s}
+    .lamp.r2{right:27%;--chain:clamp(14px,3vh,28px);width:clamp(30px,8.5vw,42px);animation-delay:-.8s;animation-duration:5.6s}
+    @keyframes swing{0%,100%{rotate:-2.6deg}50%{rotate:2.6deg}}
+    @keyframes glow{0%,100%{opacity:.75}50%{opacity:1}}
+    @keyframes flick{0%,100%{opacity:1}40%{opacity:.86}55%{opacity:.97}70%{opacity:.9}}
+    .bouquet{position:absolute;bottom:-6px;width:clamp(170px,50vw,260px);filter:drop-shadow(0 10px 14px rgba(0,0,0,.5))}
+    .bouquet svg{display:block;width:100%}
+    .bouquet.bl{left:-12px}
+    .bouquet.br{right:-12px;transform:scaleX(-1)}
+    .bouquet.tl,.bouquet.tr{bottom:auto;top:clamp(36px,6vh,54px);width:clamp(96px,26vw,150px);opacity:.9}
+    .bouquet.tl{left:-14px;transform:scaleY(-1)}
+    .bouquet.tr{right:-14px;transform:scale(-1,-1)}
+    .intro-arch{position:absolute;left:50%;top:clamp(62px,10vh,96px);bottom:18px;width:min(94%,470px);translate:-50% 0;color:var(--gold-l);opacity:.42}
+    .intro-arch svg{position:absolute;left:0;top:0;width:100%;height:auto;overflow:visible}
+    .intro-arch .pl{position:absolute;left:0;right:0;top:calc(min(94vw,470px) * .5 - 4px);bottom:0;border-left:1.2px solid currentColor;border-right:1.2px solid currentColor}
+    .intro-arch .pl::after{content:'';position:absolute;inset:0 2.7%;border-left:1px solid currentColor;border-right:1px solid currentColor;opacity:.5}
+    /* décor fades away with the intro top while the envelope opens */
+    .intro-deco{transition:opacity 1s ease}
+    html.js:not(.ready) .intro-deco{opacity:0}
+    @media (max-height:700px){.bouquet.tl,.bouquet.tr,.lamp.l2,.lamp.r2{display:none}}
+    @media (min-width:900px){.intro-deco .stage{width:min(100%,1100px)}.bouquet{width:300px}.bouquet.tl,.bouquet.tr{width:190px}.lamp{width:62px}.lamp.l2,.lamp.r2{width:46px}}
+</style>
 </head>
 
 <body class="locked">
@@ -3360,6 +3500,16 @@
       <div class="spin" data-mandala></div>
     </div>
     <div class="dust" data-dust="24"></div>
+    <div class="intro-deco" aria-hidden="true">
+      <div class="stage">
+        <div class="intro-arch"><svg viewBox="0 0 300 150" data-portal></svg><i class="pl"></i></div>
+        <div class="bouquet tl" data-bouquet></div><div class="bouquet tr" data-bouquet></div>
+        <div class="lamp l1" data-lantern></div><div class="lamp l2" data-lantern></div>
+        <div class="lamp r1" data-lantern></div><div class="lamp r2" data-lantern></div>
+        <div class="bouquet bl" data-bouquet></div><div class="bouquet br" data-bouquet></div>
+      </div>
+      <div class="toran" data-toran="16"></div>
+    </div>
 
     <div class="intro-inner">
       <div class="intro-top on-dark">
@@ -3457,25 +3607,24 @@
           <div class="portal-lines ci" style="--i:0" aria-hidden="true"></div>
           <div class="portal-base ci" style="--i:0" aria-hidden="true"></div>
           <div class="portal-in">
-            <span class="bfly ci" style="--i:1" data-bfly></span>
-            <p class="shloka ci" style="--i:2"><span data-l="bn">শ্রীশ্রী প্রজাপতয়ে নমঃ</span><span data-l="en">Shri
-                Shri Prajapataye Namah</span></p>
-            <h1 class="title ci" style="--i:3"><span class="foil"><span data-l="bn">শুভ বিবাহ</span><span
-                  data-l="en">Shubho Bibaho</span></span></h1>
-            <svg class="divider ci" style="--i:4" viewBox="0 0 240 24" data-divider aria-hidden="true"></svg>
-            <p class="names press ci" style="--i:5">
+            <p class="shloka ci" style="--i:1"><span data-l="bn">শ্রীশ্রী প্রজাপতয়ে নমঃ</span><span data-l="en">Shri Shri Prajapataye Namah</span></p>
+            <h1 class="title ci" style="--i:2"><span class="foil"><span data-l="bn">শুভ বিবাহ</span><span data-l="en">Shubho Bibaho</span></span></h1>
+            <figure class="hero ci" style="--i:3">
+              <div class="hero-in"><img src="images/couple-hero.webp" alt="শুভঙ্কর ও প্রীতি — Shuvankar &amp; Prity" decoding="async"></div>
+              <span class="bfly" data-bfly></span>
+            </figure>
+            <p class="names press ci" style="--i:4">
               <span class="nm">শুভঙ্কর</span>
-              <span class="and"><span data-l="bn">ও</span><span data-l="en"
-                  style="font-family:var(--script);font-size:1.5rem">&amp;</span></span>
+              <span class="and"><span data-l="bn">ও</span><span data-l="en" style="font-family:var(--script);font-size:1.5rem">&amp;</span></span>
               <span class="nm">প্রীতি</span>
             </p>
-            <p class="names-en script ci" style="--i:6">Shuvankar &amp; Prity</p>
-            <div class="datebar ci" style="--i:7">
+            <p class="names-en script ci" style="--i:5">Shuvankar &amp; Prity</p>
+            <div class="datebar ci" style="--i:6">
               <span><span data-l="bn">শনিবার</span><span data-l="en">Saturday</span></span>
               <b><span class="foil" data-num="12">১২</span></b>
               <span><span data-l="bn">ডিসেম্বর<br>২০২৬</span><span data-l="en">December<br>2026</span></span>
             </div>
-            <p class="bdate ci" style="--i:8"><span data-l="bn">২৫শে অগ্রহায়ণ, ১৪৩৩ · কলকাতা</span><span
+            <p class="bdate ci" style="--i:7"><span data-l="bn">২৫শে অগ্রহায়ণ, ১৪৩৩ · কলকাতা</span><span
                 data-l="en">25th Agrahayan 1433 · Kolkata</span></p>
           </div>
         </div>
@@ -3508,36 +3657,50 @@
           <use href="#corner" />
         </svg>
         <span class="crest" aria-hidden="true"><span class="bfly" data-bfly></span></span>
-        <div data-l="bn">
-          <p class="salute">মহাশয়/মহাশয়া,</p>
-          <p>আলোকের ঝর্ণাধারার সাথে বেজে উঠবে শঙ্খ, ছড়িয়ে পড়বে উলুধ্বনি, সানাইয়ে বাজবে মিলনের সুর, পবিত্র বেদমন্ত্র
-          </p>
-          <div class="mantra"><q class="foil">যদিদং হৃদয়ং মম,<br>তদিদং হৃদয়ং তব</q></div>
-          <p>উচ্চারণের মধ্য দিয়ে আগামী <b>২৫শে অগ্রহায়ণ, ১৪৩৩</b> (ইং ১২ই ডিসেম্বর, ২০২৬) শনিবার আমাদের পুত্র
-            কল্যাণীয় <em>শুভঙ্কর</em>-এর সহিত দেগঙ্গা নিবাসী শ্রী তিলক কুমার পাল মহাশয় ও শ্রীমতী কাকলী পাল মহাশয়ার
-            কন্যা কল্যাণীয়া <em>প্রীতি</em>-র শুভপরিণয় সুসম্পন্ন হইবে।</p>
-          <p>তদুপলক্ষে আগামী <b>২৭শে অগ্রহায়ণ, ১৪৩৩</b> (ইং ১৪ই ডিসেম্বর, ২০২৬) সোমবার আয়োজিত বধূবরণ অনুষ্ঠানে আপনারা
-            উপস্থিত থাকিয়া নবদম্পতিকে আশীর্বাদ দানে বাধিত করিবেন।</p>
-          <p class="pardon">পত্রদ্বারা নিমন্ত্রণের ত্রুটি মার্জনীয়।</p>
-          <div class="sign">
+        <div class="letter-mandala" aria-hidden="true"><div class="spin" data-mandala></div></div>
+        <div class="letter-mandala b" aria-hidden="true"><div class="spin rev" data-mandala></div></div>
+        <div class="dust" data-dust="12"></div>
+        <i class="letter-rod" aria-hidden="true"></i>
+
+                <div data-l="bn">
+          <p class="salute lr">মহাশয়/মহাশয়া,</p>
+          <div class="verse">
+            <span class="lr">শঙ্খ, উলুধ্বনি ও সানাইয়ের সুরে</span>
+            <span class="lr">পবিত্র বেদমন্ত্র</span>
+          </div>
+          <div class="mantra lr"><i class="m-glow" aria-hidden="true"></i><q class="foil">যদিদং হৃদয়ং মম,<br>তদিদং হৃদয়ং তব</q></div>
+          <div class="verse">
+            <span class="lr">উচ্চারণের মধ্য দিয়ে আমাদের পুত্র</span>
+            <span class="lr who"><em>শুভঙ্কর</em>-এর সহিত <em>প্রীতি</em>-র</span>
+            <span class="lr">শুভপরিণয় উপলক্ষে আয়োজিত বধূবরণ</span>
+            <span class="lr">অনুষ্ঠানে আপনারা উপস্থিত থাকিয়া</span>
+            <span class="lr">নবদম্পতিকে আশীর্বাদ দানে</span>
+            <span class="lr">বাধিত করিবেন।</span>
+          </div>
+          <span class="mini lr" aria-hidden="true"><i></i></span>
+          <div class="sign lr">
             <span class="by">বিনীত/বিনীতা</span>
             <strong>শ্রী সুশান্ত দাস</strong>
             <strong>শ্রীমতী কল্পনা দাস</strong>
           </div>
         </div>
         <div data-l="en">
-          <p class="salute">Respected Sir/Madam,</p>
-          <p>With a stream of light, the conch shells will sound, the ululation will spread, and the shehnai will play
-            the tune of union. Amid the chanting of the sacred Vedic mantra</p>
-          <div class="mantra"><q class="foil">Yadidam hridayam mama,<br>tadidam hridayam tava</q><small>“Let this heart
-              of mine be yours, and that heart of yours be mine”</small></div>
-          <p>the auspicious marriage of our son <em>Shuvankar</em> with <em>Prity</em>, daughter of Mr. Tilak Kumar Pal
-            and Mrs. Kakali Pal of Deganga, will be solemnised on <b>Saturday, 25th Agrahayan 1433</b> (12 December
-            2026).</p>
-          <p>On this occasion, we would be grateful if you would attend the reception on <b>Monday, 27th Agrahayan
-              1433</b> (14 December 2026), and bless the newlyweds.</p>
-          <p class="pardon">Kindly excuse the shortcoming of inviting you by letter.</p>
-          <div class="sign">
+          <p class="salute lr">Respected Sir/Madam,</p>
+          <div class="verse">
+            <span class="lr">To the sound of conch shells</span>
+            <span class="lr">and the shehnai, amid the sacred</span>
+            <span class="lr">Vedic mantra</span>
+          </div>
+          <div class="mantra lr"><i class="m-glow" aria-hidden="true"></i><q class="foil">Yadidam hridayam mama,<br>tadidam hridayam tava</q><small>“Let this heart of mine be yours, and that heart of yours be mine”</small></div>
+          <div class="verse">
+            <span class="lr">our son</span>
+            <span class="lr who"><em>Shuvankar</em> weds <em>Prity</em>.</span>
+            <span class="lr">We would be grateful if you would</span>
+            <span class="lr">attend the reception</span>
+            <span class="lr">and bless the newlyweds.</span>
+          </div>
+          <span class="mini lr" aria-hidden="true"><i></i></span>
+          <div class="sign lr">
             <span class="by">With regards</span>
             <strong>Mr. Sushanta Das</strong>
             <strong>Mrs. Kalpana Das</strong>
@@ -3583,7 +3746,7 @@
       <div class="knot rv" aria-hidden="true"><span class="bfly" data-bfly></span></div>
 
       <article class="person">
-        <figure class="portrait rv" data-photo="bride" style="--hy:31%;--ps:1.1;--py:3%">
+        <figure class="portrait rv" data-photo="bride" style="--hy:31%;--ps:1;--py:0%">
           <div class="portrait-in on-dark">
             <div class="halo" aria-hidden="true">
               <div class="spin rev" data-mandala></div>
@@ -3827,8 +3990,8 @@
       photos: {
         // Cut-out portraits (transparent background) sit on the velvet arch with a gold halo.
         // An ordinary photo also works; it simply fills the arch.
-        groom: "images/groom-cutout.webp",
-        bride: "images/bride-cutout.webp",
+        groom: "images/groom-portrait.webp",
+        bride: "images/bride-portrait.webp",
         gallery: [
           "images/couple-1.jpg",
           "images/couple-2.jpg",
@@ -3838,7 +4001,7 @@
         ]
       },
 
-      music: ""   // e.g. "audio/shehnai.mp3" — leave empty for no music
+      music: "audio/reception-music.mp3"   // leave empty ("") for no music
     };
 
     /* =================================================================
@@ -4029,6 +4192,67 @@
       $$('[data-bfly]').forEach(el => el.innerHTML = butterfly());
       $$('[data-mandala]').forEach(el => el.innerHTML = mandala());
       $$('[data-divider]').forEach(el => el.innerHTML = divider());
+      /* ---------- starting-page décor: toran, lanterns, roses ---------- */
+      function lantern() {
+        // Mughal-style hanging lantern, 60 × 132; the chain is drawn in CSS above it
+        return `<svg viewBox="0 0 60 132" aria-hidden="true">
+          <defs><radialGradient id="gLamp" cx=".5" cy=".55" r=".6"><stop offset="0" stop-color="#FFF6D6"/><stop offset=".45" stop-color="#F7C964"/><stop offset="1" stop-color="#C8742A"/></radialGradient></defs>
+          <g fill="url(#gGold)" stroke="#6B4713" stroke-width=".5">
+            <circle cx="30" cy="4" r="3.2" fill="none" stroke="url(#gGold)" stroke-width="1.6"/>
+            <path d="M30 7L33 13H27Z"/>
+            <path d="M14 30Q16 16 30 13Q44 16 46 30Z"/>
+            <rect x="11" y="30" width="38" height="4.5" rx="1.5"/>
+            <rect x="13" y="94" width="34" height="4.5" rx="1.5"/>
+            <path d="M15 98.5H45L33 114H27Z"/>
+            <circle cx="30" cy="117" r="2.6"/>
+          </g>
+          <path d="M15 34.5H45L44 94H16Z" fill="#3A0A10" stroke="url(#gGold)" stroke-width="1.4"/>
+          <path class="lamp-light" d="M20 91V54Q20 42 30 38Q40 42 40 54V91Z" fill="url(#gLamp)"/>
+          <g fill="none" stroke="#8A6224" stroke-width=".8" opacity=".85">
+            <path d="M20 54Q30 46 40 54M20 66H40M20 78H40M30 40V91"/>
+            <path d="M24 66Q30 60 36 66Q30 72 24 66ZM24 78Q30 72 36 78Q30 84 24 78Z"/>
+          </g>
+          <path d="M16 34.5V94M44 34.5V94" stroke="url(#gGold)" stroke-width="2"/>
+          <path d="M27 119.5H33L35 131H25Z" fill="#7E1B26" stroke="url(#gGold)" stroke-width=".6"/>
+        </svg>`;
+      }
+      function rose(x, y, r, rot, tone) {
+        const t = tone === 'blush' ? ['#C9727A', '#E6A7A3', '#F6D4C8'] : tone === 'gold' ? ['#A87A2E', '#D9B466', '#F5E2A8'] : ['#7A1622', '#A8323C', '#D46A6F'];
+        let o = `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${f1(r / 20)})">`;
+        for (let i = 0; i < 6; i++) o += `<path d="M0 0C-11-5-14-19 0-21C14-19 11-5 0 0Z" transform="rotate(${i * 60})" fill="${t[0]}"/>`;
+        for (let i = 0; i < 5; i++) o += `<path d="M0 0C-8-4-10-14 0-16C10-14 8-4 0 0Z" transform="rotate(${i * 72 + 30})" fill="${t[1]}"/>`;
+        o += `<circle r="8" fill="${t[1]}"/><path d="M-5.5 1.5C-6.5-5 3-8 5.5-2.5C7 2.5 1.5 6 -2 3.2C-4.2 1.2-2.2-2.6 1-1.8" fill="none" stroke="${t[0]}" stroke-width="1.7" stroke-linecap="round"/>`;
+        o += `<path d="M-14-9C-9-14 9-14 14-9" fill="none" stroke="${t[2]}" stroke-width="1" opacity=".55"/>`;
+        return o + '</g>';
+      }
+      function leaf(x, y, s, rot) {
+        return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s})"><path d="M0 0C7-7 20-7 28 0C20 7 7 7 0 0Z" fill="url(#gGold)"/><path d="M2 0H25" stroke="#7A5420" stroke-width=".7" opacity=".6"/></g>`;
+      }
+      function bouquet() {
+        // corner spray, 220 × 200, anchored bottom-left (mirror it in CSS for the right)
+        let o = `<svg viewBox="0 0 220 200" aria-hidden="true"><g fill="none" stroke="url(#gGold)" stroke-width="1.3" stroke-linecap="round">
+          <path d="M-4 196C40 170 70 120 104 92C130 70 160 60 196 58"/><path d="M-4 150C26 140 46 118 60 96"/><path d="M60 204C80 176 112 160 150 156"/></g>`;
+        [[30, 170, .9, -40], [56, 142, 1, -55], [84, 116, .9, -30], [120, 84, .8, -20], [150, 68, .75, -5], [176, 60, .7, 10], [20, 148, .7, -80], [44, 112, .75, -70],
+         [96, 176, .8, -15], [130, 160, .7, 0], [104, 92, .7, 40], [70, 128, .7, 30], [164, 150, .6, 15]].forEach(l => o += leaf(...l));
+        o += rose(38, 160, 22, 10, 'deep') + rose(78, 168, 17, 40, 'blush') + rose(70, 118, 15, -20, 'deep') + rose(16, 128, 13, 30, 'gold')
+           + rose(112, 98, 12, 0, 'blush') + rose(118, 150, 11, 15, 'gold');
+        let dots = ''; [[136, 76], [150, 90], [96, 140], [146, 138], [180, 70], [52, 92], [8, 108], [160, 120]].forEach(([a, b]) => dots += `<circle cx="${a}" cy="${b}" r="2.6"/>`);
+        return o + `<g fill="#F6E8C3">${dots}</g></svg>`;
+      }
+      function toran(n) {
+        // marigold swags with tassels, one 80-wide unit repeated n times
+        let beads = '', drops = '';
+        for (let k = 0; k < n; k++) {
+          const x0 = k * 80;
+          for (let i = 0; i <= 12; i++) { const t = i / 12, x = x0 + t * 80, y = 6 + Math.sin(Math.PI * t) * 26;
+            beads += `<circle cx="${f1(x)}" cy="${f1(y)}" r="${i % 3 === 0 ? 4.2 : 3.4}" fill="${i % 3 === 0 ? '#A8323C' : i % 2 ? '#E9A23B' : '#F2C14E'}"/>`; }
+          drops += `<g transform="translate(${x0 + 40} 33)"><path d="M0 0V10" stroke="url(#gGold)" stroke-width="1"/><circle cy="12" r="2.4" fill="url(#gGold)"/><path d="M-3 14H3L4.5 26H-4.5Z" fill="#7E1B26"/><path d="M-3 14H3" stroke="url(#gGold)" stroke-width="1.6"/></g>`;
+        }
+        return `<svg viewBox="0 0 ${n * 80} 64" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><path d="M0 2H${n * 80}" stroke="url(#gGold)" stroke-width="3"/>${drops}${beads}</svg>`;
+      }
+      $$('[data-lantern]').forEach(el => el.innerHTML = lantern());
+      $$('[data-bouquet]').forEach(el => el.innerHTML = bouquet());
+      $$('[data-toran]').forEach(el => el.innerHTML = toran(+el.dataset.toran || 8));
       $$('[data-portal]').forEach(el => el.innerHTML = portal());
       $$('[data-frame]').forEach(el => el.innerHTML = archFrame(el.dataset.frame));
       $$('[data-seal]').forEach(el => el.innerHTML = seal());
@@ -4193,6 +4417,26 @@
       /* ---------- reveal on scroll + foil shimmer only while visible ---------- */
       const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
       const watch = () => $$('.rv:not(.in)').forEach(el => io.observe(el));
+
+      /* ---------- letter: unrolls, then reveals line by line as you read ---------- */
+      (function letterReveal() {
+        const letter = $('.letter'); if (!letter) return;
+        const lines = $$('.lr', letter);
+        if (reduced) { letter.classList.add('in'); lines.forEach(l => l.classList.add('in')); return; }
+        let next = 0;
+        const show = el => { const t = Math.max(Date.now(), next); next = t + 160; setTimeout(() => el.classList.add('in'), t - Date.now()); };
+        const lo = new IntersectionObserver(es => es.filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+          .forEach(e => { lo.unobserve(e.target); show(e.target); }), { rootMargin: '0px 0px -8% 0px' });
+        // the letter itself starts fully clipped (invisible to observers), so watch its section instead
+        const start = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { start.disconnect(); letter.classList.add('in'); next = Date.now() + 900;
+          // lines already on screen: reveal in reading order (observers don't notice the clip opening)
+          setTimeout(() => lines.forEach(l => { const r = l.getBoundingClientRect(); if (l.offsetParent && r.bottom > 0 && r.top < innerHeight * .92) show(l); else lo.observe(l); }), 700); } }, { rootMargin: '0px 0px -30% 0px' });
+        start.observe(letter.parentElement);
+        // switching language: lines already scrolled past should simply be there
+        $$('.lang button').forEach(b => b.addEventListener('click', () => requestAnimationFrame(() =>
+          lines.forEach(l => { if (l.getBoundingClientRect().bottom < 0) l.classList.add('in'); }))));
+      })();
       const lit = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('lit', e.isIntersecting)), { rootMargin: '60px 0px' });
       if (!reduced) $$('.foil').forEach(el => lit.observe(el));
 
@@ -4221,12 +4465,38 @@
 
       /* ---------- music ---------- */
       const audio = $('#audio'), mBtn = $('#music');
+      const VOL = .35;
+      let fadeT = 0, userPaused = false;
+      function fadeTo(v, ms, done) {
+        // gentle fade (iPhone ignores volume changes, so there it simply plays/pauses)
+        clearInterval(fadeT);
+        const from = audio.volume, t0 = Date.now();
+        fadeT = setInterval(() => {
+          const k = Math.min(1, (Date.now() - t0) / ms);
+          try { audio.volume = from + (v - from) * k; } catch (e) { }
+          if (k >= 1) { clearInterval(fadeT); done && done(); }
+        }, 50);
+      }
+      function startAudio(ms) {
+        try { audio.volume = 0; } catch (e) { }
+        return audio.play().then(() => { mBtn.classList.remove('off'); fadeTo(VOL, ms); });
+      }
+      function stopAudio(ms) { fadeTo(0, ms, () => audio.pause()); mBtn.classList.add('off'); }
       function playMusic() {
         if (!CONFIG.music) return;
-        mBtn.classList.add('show'); audio.src = CONFIG.music; audio.volume = .35;
-        audio.play().then(() => mBtn.classList.remove('off')).catch(() => { });
+        mBtn.classList.add('show'); audio.src = CONFIG.music;
+        startAudio(2500).catch(() => { });
       }
-      mBtn.addEventListener('click', () => { if (audio.paused) { audio.play(); mBtn.classList.remove('off'); } else { audio.pause(); mBtn.classList.add('off'); } });
+      mBtn.addEventListener('click', () => {
+        if (audio.paused || mBtn.classList.contains('off')) { userPaused = false; startAudio(800).catch(() => { }); }
+        else { userPaused = true; stopAudio(500); }
+      });
+      // pause while the guest is in another tab/app, resume when they come back
+      document.addEventListener('visibilitychange', () => {
+        if (!audio.src || userPaused) return;
+        if (document.hidden) { clearInterval(fadeT); audio.pause(); }
+        else if (opened) startAudio(1200).catch(() => { });
+      });
 
       /* ---------- open the envelope: seal cracks → flap lifts → letter rises ---------- */
       let opened = false;

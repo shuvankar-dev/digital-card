@@ -13,8 +13,8 @@ Put these files in the `images/` folder. Use exactly these names:
 
 | File | What |
 | --- | --- |
-| `images/groom-cutout.webp` | Groom portrait with the background removed (already added) |
-| `images/bride-cutout.webp` | Bride portrait with the background removed (already added) |
+| `images/groom-portrait.webp` | Groom portrait (already added) |
+| `images/bride-portrait.webp` | Bride portrait (already added) |
 | `images/couple-1.jpg` … `images/couple-5.jpg` | Photos of you together (4–5) |
 
 Tips:
@@ -51,6 +51,6 @@ All contact, map, date and photo settings are in the `CONFIG` block near the bot
 - `phone`, `whatsapp`: currently 7630955747
 - `mapsUrl`: your Google Maps link for Sudhakunja
 - `mapEmbed` (optional): to show a live map instead of the illustrated one, open the place in Google Maps → **Share → Embed a map**, and paste only the `src="…"` link
-- `music` (optional): add a shehnai mp3, e.g. `audio/shehnai.mp3`. It starts playing when the envelope opens, and a small music button appears.
+- `music`: background music, currently `audio/reception-music.mp3`. It fades in when the envelope opens, pauses while the guest is in another app, and the round music button mutes it. To change it, put a new mp3 in `audio/` and update this line; set it to `""` for no music.
 
 The invitation wording is plain HTML in `index.html`. Search for the text you want to change.
