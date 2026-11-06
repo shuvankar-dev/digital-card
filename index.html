@@ -5523,6 +5523,8 @@
       const params = new URLSearchParams(location.search);
       const store = { get: k => { try { return localStorage.getItem(k) } catch (e) { return null } }, set: (k, v) => { try { localStorage.setItem(k, v) } catch (e) { } } };
       const f1 = n => n.toFixed(1);
+      // the number shown on the card always comes from CONFIG.phone, e.g. +91 98369 37295
+      const phoneDigits = CONFIG.phone.replace(/\D/g, ''), phoneShown = `+${phoneDigits.slice(0, -10)} ${phoneDigits.slice(-10, -5)} ${phoneDigits.slice(-5)}`;
       let lang = 'bn';
 
       /* ---------- ornaments ---------- */
@@ -5785,7 +5787,7 @@
         document.documentElement.lang = lang;
         $$('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.set === lang ? 'true' : 'false'));
         $$('[data-num]').forEach(el => el.textContent = lang === 'bn' ? bnNum(el.dataset.num) : el.dataset.num);
-        $('#phoneText').textContent = lang === 'bn' ? '+৯১ ৭৬৩০৯ ৫৫৭৪৭' : '+91 76309 55747';
+        $('#phoneText').textContent = lang === 'bn' ? bnNum(phoneShown) : phoneShown;
         document.title = lang === 'bn' ? 'শুভঙ্কর ও প্রীতি — শুভ বিবাহ' : 'Shuvankar & Prity — Wedding Invitation';
         setWa(); tick();
         if (save) store.set('lang', lang);
@@ -5812,7 +5814,7 @@
           text: 'Shuvankar & Prity — Reception',
           dates: '20261214/20261215',
           location: 'Sudhakunja, Ghoshpara, Kolkata',
-          details: `বধূবরণ · শুভঙ্কর ও প্রীতি\nMap: ${CONFIG.mapsUrl}\nContact: +91 76309 55747`
+          details: `বধূবরণ · শুভঙ্কর ও প্রীতি\nMap: ${CONFIG.mapsUrl}\nContact: ${phoneShown}`
         });
         $('#calLink').href = `https://calendar.google.com/calendar/render?${q}`;
       })();
