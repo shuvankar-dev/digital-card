@@ -1510,64 +1510,6 @@
       font-size: 1.05rem
     }
 
-    .cue {
-      position: absolute;
-      left: 50%;
-      bottom: 36px;
-      translate: -50% 0;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--bn);
-      font-size: .8rem;
-      color: var(--gold-d)
-    }
-
-    html[lang="en"] .cue {
-      font-family: var(--caps);
-      text-transform: uppercase;
-      letter-spacing: .3em;
-      font-size: .58rem;
-      font-weight: 600
-    }
-
-    .cue i {
-      width: 1px;
-      height: 30px;
-      background: linear-gradient(var(--gold), transparent);
-      animation: cue 2.2s ease-in-out infinite;
-      transform-origin: top
-    }
-
-    @keyframes cue {
-      0% {
-        transform: scaleY(0);
-        opacity: 1
-      }
-
-      60% {
-        transform: scaleY(1);
-        opacity: 1
-      }
-
-      100% {
-        transform: scaleY(1);
-        opacity: 0
-      }
-    }
-
-    @media(max-height:780px) {
-      .cue {
-        display: none
-      }
-
-      #cover .body {
-        padding-bottom: 58px
-      }
-    }
-
     /* staged entrance after the envelope opens */
     .ci {
       opacity: 0;
@@ -3308,15 +3250,6 @@
       margin-top: 8px
     }
 
-    #cover .cue {
-      bottom: 20px;
-      gap: 4px
-    }
-
-    #cover .cue i {
-      height: 18px
-    }
-
     .portal-in .names {
       margin-top: 10px
     }
@@ -3996,7 +3929,10 @@
       justify-content: center;
       gap: 8px;
       height: 10px;
-      margin: clamp(56px, 10vh, 110px) 0 0;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(100% + clamp(56px, 10vh, 110px));
       opacity: 0;
       transition: opacity .4s ease;
       pointer-events: none
@@ -4049,6 +3985,458 @@
     .ev-ico svg.crown {
       width: 64px;
       height: 64px
+    }
+
+    /* =================================================================
+       HAND GUIDES — tap the seal, then swipe up
+       ================================================================= */
+    .intro-hint {
+      margin-top: 12px
+    }
+
+    /* envelope: the hand glides in, taps the seal twice, then withdraws */
+    .tap-guide {
+      position: absolute;
+      left: 50%;
+      top: 58.5%;
+      width: 0;
+      height: 0;
+      z-index: 7;
+      pointer-events: none;
+      transition: opacity .25s ease
+    }
+
+    body.opening .tap-guide {
+      opacity: 0
+    }
+
+    .tg-hand {
+      position: absolute;
+      left: -23px;
+      top: -2px;
+      width: 118px;
+      height: auto;
+      max-width: none;
+      transform-origin: 23px 2px;
+      transform: translate(7px, 16px);
+      filter: drop-shadow(0 10px 12px rgba(50, 12, 12, .5));
+      animation: tgHand 3.8s cubic-bezier(.45, .05, .3, 1) infinite
+    }
+
+    @keyframes tgHand {
+      0% {
+        transform: translate(84px, 130px);
+        opacity: 0
+      }
+
+      14% {
+        transform: translate(16px, 38px);
+        opacity: 1
+      }
+
+      24% {
+        transform: translate(12px, 28px)
+      }
+
+      31%,
+      36% {
+        transform: translate(0, 0) scale(.95)
+      }
+
+      44% {
+        transform: translate(10px, 24px)
+      }
+
+      51%,
+      56% {
+        transform: translate(0, 0) scale(.95)
+      }
+
+      68% {
+        transform: translate(14px, 32px);
+        opacity: 1
+      }
+
+      82%,
+      100% {
+        transform: translate(84px, 130px);
+        opacity: 0
+      }
+    }
+
+    .tg-ring {
+      position: absolute;
+      left: -52px;
+      top: -52px;
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      border: 2px solid #F6E0A6;
+      opacity: 0;
+      box-shadow: 0 0 14px rgba(246, 214, 140, .8), inset 0 0 12px rgba(246, 214, 140, .5);
+      animation: tgRing 3.8s ease-out infinite
+    }
+
+    .tg-ring.b {
+      animation-delay: .76s
+    }
+
+    @keyframes tgRing {
+
+      0%,
+      30% {
+        opacity: 0;
+        transform: scale(.25)
+      }
+
+      32% {
+        opacity: 1;
+        transform: scale(.4)
+      }
+
+      48%,
+      100% {
+        opacity: 0;
+        transform: scale(1.45)
+      }
+    }
+
+    .tg-spark b {
+      position: absolute;
+      left: -3px;
+      top: -3px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #FFE9AE;
+      box-shadow: 0 0 8px 2px rgba(255, 214, 130, .9);
+      opacity: 0;
+      animation: tgSpark 3.8s ease-out infinite
+    }
+
+    @keyframes tgSpark {
+
+      0%,
+      30% {
+        opacity: 0;
+        transform: rotate(var(--a)) translateY(-26px) scale(.6)
+      }
+
+      32% {
+        opacity: 1
+      }
+
+      46% {
+        opacity: 0;
+        transform: rotate(var(--a)) translateY(-72px) scale(1)
+      }
+
+      50% {
+        opacity: 0;
+        transform: rotate(var(--a)) translateY(-26px) scale(.6)
+      }
+
+      52% {
+        opacity: 1
+      }
+
+      66%,
+      100% {
+        opacity: 0;
+        transform: rotate(var(--a)) translateY(-72px) scale(1)
+      }
+    }
+
+    .seal-part.whole {
+      animation: sealPress 3.8s ease-in-out infinite
+    }
+
+    @keyframes sealPress {
+
+      0%,
+      29%,
+      39%,
+      49%,
+      59%,
+      100% {
+        scale: 1
+      }
+
+      33%,
+      53% {
+        scale: .93
+      }
+    }
+
+    /* first page: a gold-rimmed button with the hand rising from behind it */
+    #swipe {
+      position: fixed;
+      left: 50%;
+      bottom: calc(30px + env(safe-area-inset-bottom));
+      translate: -50% 0;
+      z-index: 95;
+      display: block;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .5s ease, visibility 0s linear .5s;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    body.opened #swipe {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .7s ease 1.7s, visibility 0s linear 1.7s
+    }
+
+    body.opened #swipe.gone {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .35s ease, visibility 0s linear .35s
+    }
+
+    .sw-pill {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 54px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      overflow: hidden;
+      white-space: nowrap;
+      font-family: var(--bn);
+      font-size: 1.08rem;
+      color: #FFF3D3;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, .45);
+      background: linear-gradient(180deg, #962836, #4E0F18) padding-box, linear-gradient(105deg, #80591C, #EFD28C 25%, #FFF6D9 33%, #C99B4A 55%, #F4DFA2 77%, #80591C) border-box;
+      animation: swGlow 2.4s ease-in-out infinite
+    }
+
+    html[lang="en"] .sw-pill {
+      font-family: var(--caps);
+      font-weight: 600;
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase
+    }
+
+    .sw-pill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(105deg, transparent 35%, rgba(255, 240, 200, .34) 50%, transparent 65%);
+      transform: translateX(-120%);
+      animation: btnSheen 3.6s ease-in-out 1s infinite
+    }
+
+    @keyframes swGlow {
+
+      0%,
+      100% {
+        box-shadow: inset 0 0 0 1px rgba(255, 236, 190, .28), 0 14px 26px -10px rgba(44, 8, 13, .85), 0 0 0 0 rgba(201, 155, 74, .55)
+      }
+
+      60% {
+        box-shadow: inset 0 0 0 1px rgba(255, 236, 190, .28), 0 14px 26px -10px rgba(44, 8, 13, .85), 0 0 0 11px rgba(201, 155, 74, 0)
+      }
+    }
+
+    .sw-c {
+      width: 15px;
+      height: 18px;
+      flex: 0 0 15px;
+      fill: none;
+      stroke: #F4DFA2;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      animation: swChev 1.2s ease-in-out infinite
+    }
+
+    @keyframes swChev {
+
+      0%,
+      100% {
+        transform: translateY(3px);
+        opacity: .45
+      }
+
+      50% {
+        transform: translateY(-3px);
+        opacity: 1
+      }
+    }
+
+    .sw-stage {
+      position: absolute;
+      left: 50%;
+      bottom: 27px;
+      width: 190px;
+      height: 150px;
+      margin-left: -95px;
+      overflow: hidden;
+      pointer-events: none
+    }
+
+    .sw-move {
+      position: absolute;
+      left: 50%;
+      top: 82px;
+      width: 82px;
+      height: 90px;
+      margin-left: -16px;
+      animation: swMove 2.4s cubic-bezier(.45, .05, .3, 1) infinite
+    }
+
+    .sw-move img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: none;
+      transform-origin: 16px 2px;
+      rotate: 18deg;
+      filter: drop-shadow(0 6px 8px rgba(60, 20, 16, .45))
+    }
+
+    .sw-touch {
+      position: absolute;
+      z-index: 1;
+      left: 3px;
+      top: -11px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(255, 226, 150, .95), rgba(255, 206, 110, .35) 60%, transparent);
+      animation: swTouch 2.4s ease-out infinite
+    }
+
+    @keyframes swMove {
+      0% {
+        transform: translateY(50px);
+        opacity: 0
+      }
+
+      12% {
+        transform: translateY(38px);
+        opacity: 1
+      }
+
+      22% {
+        transform: translateY(38px) scale(.97)
+      }
+
+      66% {
+        transform: translateY(-26px);
+        opacity: 1
+      }
+
+      82%,
+      100% {
+        transform: translateY(-36px);
+        opacity: 0
+      }
+    }
+
+    @keyframes swTouch {
+
+      0%,
+      14% {
+        opacity: 0;
+        transform: scale(.4)
+      }
+
+      24% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      62% {
+        opacity: 1;
+        transform: scale(1.25)
+      }
+
+      78%,
+      100% {
+        opacity: 0;
+        transform: scale(1.7)
+      }
+    }
+
+    @keyframes swMoveDown {
+      0% {
+        transform: translateY(-30px);
+        opacity: 0
+      }
+
+      14% {
+        opacity: 1
+      }
+
+      62% {
+        transform: translateY(0);
+        opacity: 1
+      }
+
+      72% {
+        transform: translateY(0) scale(.97);
+        opacity: 1
+      }
+
+      88%,
+      100% {
+        transform: translateY(-8px);
+        opacity: 0
+      }
+    }
+
+    #swipe .mouse {
+      display: none
+    }
+
+    @media(max-width:400px) {
+      .sw-pill {
+        padding: 0 16px;
+        gap: 8px
+      }
+    }
+
+    @media(hover:hover) and (pointer:fine) {
+      #swipe .touch {
+        display: none
+      }
+
+      #swipe span.mouse {
+        display: inline
+      }
+
+      .sw-c {
+        rotate: 180deg
+      }
+
+      .sw-stage {
+        -webkit-mask-image: linear-gradient(180deg, transparent 8%, #000 34%);
+        mask-image: linear-gradient(180deg, transparent 8%, #000 34%)
+      }
+
+      .sw-move {
+        top: 111px;
+        animation-name: swMoveDown
+      }
+
+      .sw-move img {
+        rotate: 198deg
+      }
+
+      .sw-touch {
+        display: none
+      }
+    }
+
+    .env-wrap {
+      position: relative
     }
   </style>
 </head>
@@ -4575,6 +4963,18 @@
   <button id="music" class="off" type="button" aria-label="Music"><span
       class="bars"><i></i><i></i><i></i></span></button>
   <audio id="audio" loop preload="none"></audio>
+  <a id="swipe" href="#letter" aria-label="নীচে দেখুন — Scroll down">
+    <span class="sw-stage" aria-hidden="true"><span class="sw-move"><i class="sw-touch"></i><img
+          src="images/hand-tap.webp" alt="" decoding="async"></span></span>
+    <span class="sw-pill"><svg class="sw-c" viewBox="0 0 16 18" aria-hidden="true">
+        <path d="M2 9l6-6 6 6M2 16l6-6 6 6" />
+      </svg>
+      <span class="touch"><span data-l="bn">উপরে স্ক্রোল করুন</span><span data-l="en">Swipe up</span></span>
+      <span class="mouse"><span data-l="bn">নীচে স্ক্রোল করুন</span><span data-l="en">Scroll down</span></span>
+      <svg class="sw-c" viewBox="0 0 16 18" aria-hidden="true">
+        <path d="M2 9l6-6 6 6M2 16l6-6 6 6" />
+      </svg></span>
+  </a>
 
   <div class="side l" aria-hidden="true">
     <div class="spin" data-mandala></div>
@@ -4657,6 +5057,12 @@
             <span class="seal-part r" data-seal></span>
             <span class="seal-part whole" data-seal></span>
           </button>
+          <div class="tap-guide" aria-hidden="true">
+            <i class="tg-ring"></i><i class="tg-ring b"></i><span class="tg-spark"><b style="--a:0deg"></b><b
+                style="--a:60deg"></b><b style="--a:120deg"></b><b style="--a:180deg"></b><b style="--a:240deg"></b><b
+                style="--a:300deg"></b></span>
+            <img class="tg-hand" src="images/hand-tap.webp" alt="" decoding="async">
+          </div>
         </div>
         <p class="env-wait" aria-hidden="true"><i></i><i></i><i></i></p>
       </div>
@@ -4727,8 +5133,6 @@
           </div>
         </div>
 
-        <a class="cue ci" style="--i:10" href="#letter"><span data-l="bn">নীচে দেখুন</span><span
-            data-l="en">Scroll</span><i></i></a>
       </div>
       <div class="sari flip"></div>
     </section>
@@ -5654,11 +6058,14 @@
       $('#env').addEventListener('click', e => { if (e.target.closest('.env-letter,.env-front,.env-flap,.env-lines')) open(); });
 
       /* ---------- language pill hides while scrolling down ---------- */
+      const swipe = $('#swipe');
+      swipe.addEventListener('click', () => swipe.classList.add('gone'));
       let lastY = 0;
       addEventListener('scroll', () => {
         const y = scrollY, pill = $('.lang');
         if (y > lastY + 6 && y > 240) pill.classList.add('away');
         else if (y < lastY - 6 || y < 240) pill.classList.remove('away');
+        if (y > 50 && document.body.classList.contains('opened')) swipe.classList.add('gone');
         lastY = y;
       }, { passive: true });
 
