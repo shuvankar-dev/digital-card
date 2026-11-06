@@ -31,9 +31,7 @@ Tips:
 3. Framework preset: **Other**. Build command: none. Output directory: leave it as is.
 4. Click **Deploy**.
 
-**After the first deploy**, open `index.html` and change the `og:image` line to your full site address, e.g.
-`<meta property="og:image" content="https://YOUR-SITE.vercel.app/images/og-cover.jpg">`.
-WhatsApp needs the full URL to show the preview picture when you share the link.
+**WhatsApp preview picture:** the `og:url`, `og:image` and `twitter:image` lines in `index.html` already point to `https://digital-card-one-lyart.vercel.app`. If the site address ever changes, update those lines; WhatsApp needs the full address. WhatsApp remembers links, so after changing the preview, test with something new on the end, e.g. `/?v=3`.
 
 ## 3. Sharing links
 
@@ -48,7 +46,7 @@ WhatsApp needs the full URL to show the preview picture when you share the link.
 
 All contact, map, date and photo settings are in the `CONFIG` block near the bottom of `index.html`:
 
-- `phone`, `whatsapp`: currently 7630955747
+- `phone`, `whatsapp`: currently 9836937295
 - `mapsUrl`: your Google Maps link for Sudhakunja
 - `mapEmbed` (optional): to show a live map instead of the illustrated one, open the place in Google Maps → **Share → Embed a map**, and paste only the `src="…"` link
 - `music`: background music, currently `audio/reception-music.mp3`. It fades in when the envelope opens, pauses while the guest is in another app, and the round music button mutes it. To change it, put a new mp3 in `audio/` and update this line; set it to `""` for no music.
