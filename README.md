@@ -5,7 +5,7 @@ A mobile-first animated wedding invitation in ivory, gold and maroon. It is a si
 - Opens with a sealed envelope. Tapping it breaks the wax seal, lifts the flap, slides the card out and drops a shower of petals.
 - Sections: cover → invitation letter → groom & bride → dates and countdown → photos → venue and directions → contact.
 - Has a Bengali / English switch.
-- Includes a WhatsApp preview image (`images/og-cover.jpg`).
+- Includes a WhatsApp preview image (`images/wedding-preview.jpg`).
 
 ## 1. Add your photos
 
@@ -31,7 +31,7 @@ Tips:
 3. Framework preset: **Other**. Build command: none. Output directory: leave it as is.
 4. Click **Deploy**.
 
-**WhatsApp preview picture:** the `og:url`, `og:image` and `twitter:image` lines in `index.html` already point to `https://digital-card-one-lyart.vercel.app`. If the site address ever changes, update those lines; WhatsApp needs the full address. WhatsApp remembers links, so after changing the preview, test with something new on the end, e.g. `/?v=3`.
+**WhatsApp preview picture:** the `og:url`, `og:image` and `twitter:image` lines in `index.html` already point to `https://shuvankar-wedding-card.vercel.app`. If the site address ever changes, update those lines; WhatsApp needs the full address. Keep those tags at the top of `<head>` and keep `<head>` short, because link previews only read the start of the page. WhatsApp remembers links, so after changing the preview, test with something new on the end, e.g. `/?v=3`.
 
 ## 3. Sharing links
 
